@@ -47,7 +47,7 @@ body {
   top: 0; left: 0;
   pointer-events: none;
   z-index: 9999;
-  transition: transform 0.15s ease, opacity 0.3s;
+  transition: width 0.2s ease, height 0.2s ease, opacity 0.3s;
 }
 .cursor-ring {
   width: 40px; height: 40px;
@@ -57,10 +57,10 @@ body {
   top: 0; left: 0;
   pointer-events: none;
   z-index: 9998;
-  transition: transform 0.35s cubic-bezier(0.23,1,0.32,1), width 0.3s, height 0.3s, opacity 0.3s;
+  transition: width 0.3s, height 0.3s, opacity 0.3s;
   opacity: 0.6;
 }
-.cursor.hover { transform: scale(2.5); }
+.cursor.hover { width: 20px; height: 20px; opacity: 0.7; }
 .cursor-ring.hover { width: 60px; height: 60px; opacity: 0.3; }
 
 /*  NOISE OVERLAY  */
@@ -154,6 +154,21 @@ nav.scrolled {
 }
 .nav-cta::after { display: none !important; }
 .nav-cta:hover { background: var(--orange2) !important; transform: scale(1.04) !important; }
+
+.lang-toggle {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.25);
+  color: var(--white);
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 5px 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);
+}
+.lang-toggle:hover { background: var(--orange); border-color: var(--orange); }
 
 .hamburger {
   display: none;
@@ -1588,6 +1603,7 @@ footer {
     <li><a href="#contact">Contact</a></li>
     <li><a href="free-trial.html" class="nav-cta">Free Trial</a></li>
   </ul>
+  <button class="lang-toggle" id="lang-toggle" onclick="toggleLang()">FR</button>
   <div class="hamburger" id="hamburger">
     <span></span>
     <span></span>
@@ -1791,12 +1807,7 @@ footer {
         <div class="class-desc">Channel your energy into a full-body cardio and coordination workout inspired by boxing technique. No fighting, all fitness.</div>
         <div class="class-tag">Beginner Friendly</div>
       </div>
-      <div class="class-card reveal reveal-delay-3">
-        <div class="class-bg-number">06</div>
-        <div class="class-name">Yoga</div>
-        <div class="class-desc">Find balance, flexibility, and mental clarity. The perfect complement to intense training — recovery and mindfulness in one.</div>
-        <div class="class-tag">All Levels</div>
-      </div>
+
     </div>
   </div>
 </section>
@@ -2121,7 +2132,7 @@ footer {
                 <div class="ci-value">Carlitosport</div>
               </div>
             </a>
-            <a href="https://www.tiktok.com/@carlitosport" class="contact-item reveal reveal-delay-5">
+            <a href="https://www.tiktok.com/@charlesalexandreee" class="contact-item reveal reveal-delay-5">
               <div class="ci-icon">TK</div>
               <div>
                 <div class="ci-label">TikTok</div>
@@ -2149,7 +2160,7 @@ footer {
   <div class="social-links">
     <a href="https://instagram.com/carlito.sport" class="social-link">Instagram</a>
     <a href="https://www.facebook.com/people/Carlitosport/100063621079017/" class="social-link">Facebook</a>
-    <a href="https://www.tiktok.com/@carlitosport" class="social-link">TikTok</a>
+    <a href="https://www.tiktok.com/@charlesalexandreee" class="social-link">TikTok</a>
     <a href="https://www.linkedin.com/in/carlito-sport-32bb74149/" class="social-link">LinkedIn</a>
   </div>
 </div>
@@ -2174,13 +2185,15 @@ let mx = 0, my = 0, rx = 0, ry = 0;
 
 document.addEventListener('mousemove', e => {
   mx = e.clientX; my = e.clientY;
-  cursor.style.transform = `translate(${mx - 6}px, ${my - 6}px)`;
+  cursor.style.left = (mx - 6) + 'px';
+  cursor.style.top = (my - 6) + 'px';
 });
 
 function animateRing() {
   rx += (mx - rx - 20) * 0.12;
   ry += (my - ry - 20) * 0.12;
-  ring.style.transform = `translate(${rx}px, ${ry}px)`;
+  ring.style.left = rx + 'px';
+  ring.style.top = ry + 'px';
   requestAnimationFrame(animateRing);
 }
 animateRing();
@@ -2322,6 +2335,212 @@ const statsObserver = new IntersectionObserver((entries) => {
 
 const statsSection = document.getElementById('stats');
 if (statsSection) statsObserver.observe(statsSection);
+
+// LANGUAGE TOGGLE
+const translations = {
+  en: {
+    'nav-training': 'Training','nav-classes': 'Classes','nav-trainers': 'Trainers','nav-pricing': 'Pricing','nav-contact': 'Contact','nav-free-trial': 'Free Trial',
+    'hero-badge': 'First class FREE — no commitment','hero-label': 'Brussels — European Quarter','hero-sub': 'Indoor &amp; Outdoor &nbsp;·&nbsp; Brussels &nbsp;·&nbsp; Mon–Sun 6AM–10PM','hero-btn1': 'Claim Free Class','hero-btn2': 'Explore Training','hero-nocard': 'No card required',
+    'stat-years': 'Years of Experience','stat-members': 'Active Members','stat-classes': 'Class Types','stat-days': 'Days a Week',
+    'about-label': 'Our Story','about-p1': "Born in the heart of Brussels's European Quarter, Carlito Sport is more than a gym — it's a community built on sweat, ambition, and mutual support. Whether you're taking your first step or crushing personal records, there's a place for you here.",'about-p2': 'With both indoor facilities at Avenue de Tervueren and outdoor sessions at the iconic Parc du Cinquantenaire athletics track, we bring training to life in every environment.',
+    'about-ic1': 'Weight Training','about-ic1d': 'Build strength and muscle with expert-guided lifting programs.','about-ic2': 'Boxing','about-ic2d': 'High-intensity cardio boxing for fitness and technique.','about-ic3': 'Yoga','about-ic3d': 'Restore balance, flexibility, and mindfulness.','about-ic4': 'Nutrition','about-ic4d': 'Personalised nutrition coaching to fuel your performance.',
+    'trainings-label': 'Training Programs','trainings-intro': 'Choose the format that fits your life — from dedicated 1-on-1 coaching to energetic group sessions and corporate wellness at the office.',
+    't1-title': 'Personal Training','t1-desc': 'Fully tailored 1-on-1 sessions designed around your specific goals, schedule, and fitness level. Maximum results, minimum wasted effort.',
+    't2-title': 'Small Group','t2-desc': "The best of both worlds — personalised attention within a motivating small group. Train alongside friends without losing that individual focus.",
+    't3-title': 'Group Training','t3-desc': "High-energy classes open to all fitness levels. The community energy pushes you further than you'd go alone. No experience required.",
+    't4-title': 'FIT@Work','t4-desc': 'Corporate wellness programs delivered at your office or our facilities. Improve team wellbeing, productivity, and cohesion.',
+    'discover': 'Discover',
+    'classes-label': 'Schedule','classes-btn': 'Try a Class Free',
+    'c1-name': 'Full Body Workout','c1-desc': 'Complete head-to-toe conditioning combining compound movements, core work, and cardio bursts for total fitness transformation.',
+    'c2-name': 'Cardio &amp; ABS','c2-desc': 'Burn calories, build core strength, and improve cardiovascular endurance with this targeted high-intensity session.',
+    'c3-name': 'Booty Sessions','c3-desc': 'Sculpt and strengthen the glutes, hamstrings, and lower body with progressive resistance and plyometric training.',
+    'c4-name': 'Strength Training','c4-desc': 'Progressive overload programming to build functional strength, muscle, and power under expert coaching supervision.',
+    'c5-name': 'Cardio Boxing','c5-desc': 'Channel your energy into a full-body cardio and coordination workout inspired by boxing technique. No fighting, all fitness.',
+    'c6-name': 'Yoga','c6-desc': 'Find balance, flexibility, and mental clarity. The perfect complement to intense training — recovery and mindfulness in one.',
+    'all-levels': 'All Levels','intermediate': 'Intermediate','beginner': 'Beginner Friendly',
+    'trainers-label': 'The Team',
+    'testi-label': 'Reviews','testi-meta': '5.0 — Based on 190+ Reviews','testi-cta': 'Join Them — Try a Free Class','testi-cta-note': 'No commitment. Just show up.',
+    'manifesto-sub': 'The community. The commitment. The results.','manifesto-btn1': 'Claim Your Free Class','manifesto-btn2': 'Get in Touch',
+    'pricing-label': 'Pricing','pricing-intro': 'Your first class is always free. No credit card, no commitment — just come and experience it for yourself.',
+    'p1-eyebrow': 'Best Way to Start','p1-name': 'Free Trial','p1-price': 'FREE','p1-period': 'Your very first class',
+    'p1-f1': '1 full group class of your choice','p1-f2': 'Free parking on site','p1-f3': 'No credit card required','p1-f4': 'Personal welcome from your coach','p1-f5': 'Zero commitment — try it once','p1-btn': 'Claim Free Class',
+    'p2-eyebrow': 'Community','p2-name': 'Group Training','p2-price': 'Ask us','p2-period': 'Flexible passes available',
+    'p2-f1': 'All 6 class types included','p2-f2': 'Indoor &amp; outdoor sessions','p2-f3': 'Community of 500+ members','p2-f4': 'Mon–Sun flexible scheduling','p2-f5': 'Book via BSport app','p2-btn': 'See Packages',
+    'p3-eyebrow': 'Premium','p3-name': 'Personal Coaching','p3-price': 'Custom','p3-period': 'Tailored to your goals',
+    'p3-f1': '1-on-1 with an expert coach','p3-f2': 'Fully personalised program','p3-f3': 'Nutrition coaching included','p3-f4': 'Progress tracking &amp; analysis','p3-f5': 'Flexible session times','p3-btn': 'Get Pricing',
+    'pricing-note': 'All packages bookable via BSport or Reservio. Contact us for corporate &amp; group rates.',
+    'contact-label': 'Find Us','loc-title': 'Training Locations','hours-title': 'Opening Hours',
+    'hours-mf': 'Monday – Friday','hours-sat': 'Saturday','hours-sun': 'Sunday',
+    'touch-title': 'Get in Touch','book-title': 'Book a Session','book-btn1': 'Try Your First Class Free','book-btn2': 'Book on BSport',
+    'social-label': 'Follow the journey','footer-copy': '© 2024 Carlito Sport. Brussels, European Quarter.',
+  },
+  fr: {
+    'nav-training': 'Entraînement','nav-classes': 'Cours','nav-trainers': 'Coachs','nav-pricing': 'Tarifs','nav-contact': 'Contact','nav-free-trial': 'Essai Gratuit',
+    'hero-badge': 'Premier cours GRATUIT — sans engagement','hero-label': 'Bruxelles — Quartier Européen','hero-sub': 'Indoor &amp; Outdoor &nbsp;·&nbsp; Bruxelles &nbsp;·&nbsp; Lun–Dim 6h–22h','hero-btn1': 'Réserver mon cours gratuit','hero-btn2': "Découvrir l'entraînement",'hero-nocard': 'Sans carte bancaire',
+    'stat-years': "Ans d'Expérience",'stat-members': 'Membres Actifs','stat-classes': 'Types de Cours','stat-days': 'Jours par Semaine',
+    'about-label': 'Notre Histoire','about-p1': "Né au cœur du Quartier Européen de Bruxelles, Carlito Sport est bien plus qu'une salle de sport — c'est une communauté fondée sur la sueur, l'ambition et la solidarité. Que tu fasses tes premiers pas ou que tu battes des records personnels, ta place est ici.",'about-p2': "Avec nos installations intérieures Avenue de Tervueren et nos séances en plein air à la piste d'athlétisme du Parc du Cinquantenaire, nous donnons vie à l'entraînement dans tous les environnements.",
+    'about-ic1': 'Musculation','about-ic1d': 'Développe ta force et tes muscles avec des programmes guidés par des experts.','about-ic2': 'Boxe','about-ic2d': 'Cardio boxing haute intensité pour la forme et la technique.','about-ic3': 'Yoga','about-ic3d': 'Retrouve équilibre, souplesse et pleine conscience.','about-ic4': 'Nutrition','about-ic4d': 'Coaching nutritionnel personnalisé pour optimiser tes performances.',
+    'trainings-label': "Programmes d'Entraînement",'trainings-intro': "Choisis le format qui correspond à ta vie — du coaching individuel dédié aux séances de groupe dynamiques et au bien-être en entreprise.",
+    't1-title': 'Coaching Personnel','t1-desc': "Séances 1-on-1 entièrement sur mesure, adaptées à tes objectifs, ton emploi du temps et ton niveau. Résultats maximaux, efforts optimisés.",
+    't2-title': 'Petit Groupe','t2-desc': "Le meilleur des deux mondes — suivi personnalisé au sein d'un petit groupe motivant. Entraîne-toi avec des amis sans perdre l'attention individuelle.",
+    't3-title': 'Cours Collectifs','t3-desc': "Cours haute énergie ouverts à tous les niveaux. L'énergie collective te pousse au-delà de tes limites. Aucune expérience requise.",
+    't4-title': 'FIT@Work','t4-desc': "Programmes de bien-être en entreprise dans ton bureau ou nos installations. Améliore la cohésion, la productivité et le bien-être de ton équipe.",
+    'discover': 'Découvrir',
+    'classes-label': 'Horaires','classes-btn': 'Essayer un cours gratuit',
+    'c1-name': 'Full Body Workout','c1-desc': 'Conditionnement complet combinant mouvements composés, gainage et cardio pour une transformation physique totale.',
+    'c2-name': 'Cardio &amp; ABS','c2-desc': 'Brûle des calories, renforce le core et améliore ton endurance cardiovasculaire avec cette séance haute intensité ciblée.',
+    'c3-name': 'Booty Sessions','c3-desc': 'Sculpte et renforce les fessiers, ischio-jambiers et bas du corps avec résistance progressive et entraînement pliométrique.',
+    'c4-name': 'Musculation','c4-desc': 'Programmation en surcharge progressive pour développer force fonctionnelle, masse musculaire et puissance.',
+    'c5-name': 'Cardio Boxe','c5-desc': 'Canalise ton énergie dans un entraînement cardio et coordination inspiré de la technique de boxe. Pas de combat, que du fitness.',
+    'c6-name': 'Yoga','c6-desc': 'Trouve équilibre, souplesse et clarté mentale. Le complément parfait à un entraînement intense — récupération et pleine conscience en un.',
+    'all-levels': 'Tous Niveaux','intermediate': 'Intermédiaire','beginner': 'Débutant Bienvenu',
+    'trainers-label': "L'Équipe",
+    'testi-label': 'Avis','testi-meta': '5.0 — Basé sur 190+ Avis','testi-cta': 'Rejoins-les — Essaie un cours gratuit','testi-cta-note': 'Sans engagement. Viens juste.',
+    'manifesto-sub': "La communauté. L'engagement. Les résultats.",'manifesto-btn1': 'Réserver mon cours gratuit','manifesto-btn2': 'Nous contacter',
+    'pricing-label': 'Tarifs','pricing-intro': 'Ton premier cours est toujours gratuit. Sans carte bancaire, sans engagement — viens juste essayer par toi-même.',
+    'p1-eyebrow': 'La Meilleure Façon de Commencer','p1-name': 'Essai Gratuit','p1-price': 'GRATUIT','p1-period': 'Ton tout premier cours',
+    'p1-f1': '1 cours collectif au choix','p1-f2': 'Parking gratuit sur place','p1-f3': 'Sans carte bancaire','p1-f4': 'Accueil personnalisé par ton coach','p1-f5': 'Zéro engagement — essaie une fois','p1-btn': 'Réserver mon cours gratuit',
+    'p2-eyebrow': 'Communauté','p2-name': 'Cours Collectifs','p2-price': 'Nous contacter','p2-period': 'Passes flexibles disponibles',
+    'p2-f1': 'Les 6 types de cours inclus','p2-f2': 'Séances indoor &amp; outdoor','p2-f3': 'Communauté de 500+ membres','p2-f4': 'Planning flexible Lun–Dim','p2-f5': 'Réservation via BSport','p2-btn': 'Voir les Forfaits',
+    'p3-eyebrow': 'Premium','p3-name': 'Coaching Personnel','p3-price': 'Sur mesure','p3-period': 'Adapté à tes objectifs',
+    'p3-f1': '1-on-1 avec un coach expert','p3-f2': 'Programme entièrement personnalisé','p3-f3': 'Coaching nutritionnel inclus','p3-f4': 'Suivi et analyse des progrès','p3-f5': 'Horaires flexibles','p3-btn': 'Voir les Tarifs',
+    'pricing-note': 'Tous les forfaits réservables via BSport ou Reservio. Contactez-nous pour les tarifs entreprises &amp; groupes.',
+    'contact-label': 'Nous Trouver','loc-title': "Lieux d'Entraînement",'hours-title': "Horaires d'Ouverture",
+    'hours-mf': 'Lundi – Vendredi','hours-sat': 'Samedi','hours-sun': 'Dimanche',
+    'touch-title': 'Nous Contacter','book-title': 'Réserver une Séance','book-btn1': 'Essayer mon premier cours gratuit','book-btn2': 'Réserver sur BSport',
+    'social-label': "Suis l'aventure",'footer-copy': '© 2024 Carlito Sport. Bruxelles, Quartier Européen.',
+  }
+};
+
+let currentLang = 'en';
+
+function toggleLang() {
+  currentLang = currentLang === 'en' ? 'fr' : 'en';
+  document.getElementById('lang-toggle').textContent = currentLang === 'en' ? 'FR' : 'EN';
+  document.documentElement.lang = currentLang;
+  applyTranslations();
+}
+
+function t(key) { return translations[currentLang][key] || translations['en'][key] || key; }
+
+function applyTranslations() {
+  const navLinks = document.querySelectorAll('.nav-links li a');
+  const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+  const navKeys = ['nav-training','nav-classes','nav-trainers','nav-pricing','nav-contact','nav-free-trial'];
+  navLinks.forEach((a, i) => { if (navKeys[i]) a.textContent = t(navKeys[i]); });
+  mobileLinks.forEach((a, i) => { if (navKeys[i]) a.textContent = t(navKeys[i]); });
+
+  document.querySelector('.hero-badge').innerHTML = '<span class="hero-badge-dot"></span> ' + t('hero-badge');
+  document.querySelector('.hero-label').textContent = t('hero-label');
+  document.querySelector('.hero-sub').innerHTML = t('hero-sub');
+  const heroBtns = document.querySelectorAll('.hero-actions a');
+  if (heroBtns[0]) heroBtns[0].textContent = t('hero-btn1');
+  if (heroBtns[1]) heroBtns[1].textContent = t('hero-btn2');
+  const nocard = document.querySelector('.hero-no-commitment');
+  if (nocard) nocard.textContent = t('hero-nocard');
+
+  const statLabels = document.querySelectorAll('.stat-label');
+  ['stat-years','stat-members','stat-classes','stat-days'].forEach((k,i) => { if (statLabels[i]) statLabels[i].textContent = t(k); });
+
+  document.querySelector('#about .section-label').textContent = t('about-label');
+  const aboutPs = document.querySelectorAll('#about .about-text p');
+  if (aboutPs[0]) aboutPs[0].textContent = t('about-p1');
+  if (aboutPs[1]) aboutPs[1].textContent = t('about-p2');
+  const icTitles = document.querySelectorAll('.ic-title');
+  const icDescs = document.querySelectorAll('.ic-desc');
+  ['about-ic1','about-ic2','about-ic3','about-ic4'].forEach((k,i) => {
+    if (icTitles[i]) icTitles[i].textContent = t(k);
+    if (icDescs[i]) icDescs[i].textContent = t(k+'d');
+  });
+
+  document.querySelector('#trainings .section-label').textContent = t('trainings-label');
+  const trainingsP = document.querySelector('#trainings p.reveal');
+  if (trainingsP) trainingsP.textContent = t('trainings-intro');
+  const tCards = document.querySelectorAll('.training-card');
+  [['t1-title','t1-desc'],['t2-title','t2-desc'],['t3-title','t3-desc'],['t4-title','t4-desc']].forEach(([tk,dk],i) => {
+    if (tCards[i]) {
+      tCards[i].querySelector('.training-title').textContent = t(tk);
+      tCards[i].querySelector('.training-desc').textContent = t(dk);
+      tCards[i].querySelector('.training-link').textContent = t('discover');
+    }
+  });
+
+  document.querySelector('#classes .section-label').textContent = t('classes-label');
+  const classBtn = document.querySelector('#classes .btn-primary');
+  if (classBtn) classBtn.textContent = t('classes-btn');
+  const cCards = document.querySelectorAll('.class-card');
+  [['c1-name','c1-desc','all-levels'],['c2-name','c2-desc','intermediate'],['c3-name','c3-desc','all-levels'],
+   ['c4-name','c4-desc','all-levels'],['c5-name','c5-desc','beginner'],['c6-name','c6-desc','all-levels']].forEach(([nk,dk,tagk],i) => {
+    if (cCards[i]) {
+      cCards[i].querySelector('.class-name').innerHTML = t(nk);
+      cCards[i].querySelector('.class-desc').textContent = t(dk);
+      cCards[i].querySelector('.class-tag').textContent = t(tagk);
+    }
+  });
+
+  document.querySelector('#trainers .section-label').textContent = t('trainers-label');
+
+  document.querySelector('#testimonials .section-label').textContent = t('testi-label');
+  const testiMeta = document.querySelector('.testimonials-meta');
+  if (testiMeta) testiMeta.textContent = t('testi-meta');
+  const testiCta = document.querySelector('.testimonials-cta a');
+  if (testiCta) testiCta.textContent = t('testi-cta');
+  const testiNote = document.querySelector('.testimonials-cta-note');
+  if (testiNote) testiNote.textContent = t('testi-cta-note');
+
+  const manifSub = document.querySelector('.manifesto-sub');
+  if (manifSub) manifSub.textContent = t('manifesto-sub');
+  const manifBtns = document.querySelectorAll('#manifesto a');
+  if (manifBtns[0]) manifBtns[0].textContent = t('manifesto-btn1');
+  if (manifBtns[1]) manifBtns[1].textContent = t('manifesto-btn2');
+
+  document.querySelector('#pricing .section-label').textContent = t('pricing-label');
+  const pricingIntroP = document.querySelector('.pricing-header p.reveal');
+  if (pricingIntroP) pricingIntroP.textContent = t('pricing-intro');
+  const pCards = document.querySelectorAll('.pricing-card');
+  const pData = [
+    ['p1-eyebrow','p1-name','p1-price','p1-period',['p1-f1','p1-f2','p1-f3','p1-f4','p1-f5'],'p1-btn'],
+    ['p2-eyebrow','p2-name','p2-price','p2-period',['p2-f1','p2-f2','p2-f3','p2-f4','p2-f5'],'p2-btn'],
+    ['p3-eyebrow','p3-name','p3-price','p3-period',['p3-f1','p3-f2','p3-f3','p3-f4','p3-f5'],'p3-btn'],
+  ];
+  pCards.forEach((card, i) => {
+    if (!pData[i]) return;
+    const [ek,nk,prk,pek,fks,bk] = pData[i];
+    card.querySelector('.pricing-card-eyebrow').textContent = t(ek);
+    card.querySelector('.pricing-card-name').textContent = t(nk);
+    card.querySelector('.pricing-amount').textContent = t(prk);
+    card.querySelector('.pricing-period').textContent = t(pek);
+    const lis = card.querySelectorAll('.pricing-features li');
+    fks.forEach((fk,j) => { if (lis[j]) lis[j].innerHTML = t(fk); });
+    const btn = card.querySelector('a');
+    if (btn) btn.textContent = t(bk);
+  });
+  const pricingNote = document.querySelector('.pricing-note');
+  if (pricingNote) pricingNote.innerHTML = t('pricing-note');
+
+  document.querySelector('#contact .section-label').textContent = t('contact-label');
+  const contactH3s = document.querySelectorAll('#contact h3');
+  if (contactH3s[0]) contactH3s[0].textContent = t('loc-title');
+  if (contactH3s[1]) contactH3s[1].textContent = t('hours-title');
+  if (contactH3s[2]) contactH3s[2].textContent = t('touch-title');
+  if (contactH3s[3]) contactH3s[3].textContent = t('book-title');
+  const hoursDays = document.querySelectorAll('.hours-day');
+  if (hoursDays[0]) hoursDays[0].textContent = t('hours-mf');
+  if (hoursDays[1]) hoursDays[1].textContent = t('hours-sat');
+  if (hoursDays[2]) hoursDays[2].textContent = t('hours-sun');
+  const bookBtns = document.querySelectorAll('.contact-block .btn-primary, .contact-block .btn-secondary');
+  if (bookBtns[0]) bookBtns[0].textContent = t('book-btn1');
+  if (bookBtns[1]) bookBtns[1].textContent = t('book-btn2');
+
+  const socialLabel = document.querySelector('.social-label');
+  if (socialLabel) socialLabel.textContent = t('social-label');
+  const footerCopy = document.querySelector('.footer-copy');
+  if (footerCopy) footerCopy.textContent = t('footer-copy');
+  const footerLinks = document.querySelectorAll('.footer-links a');
+  const footerKeys = ['nav-pricing','nav-training','nav-free-trial','nav-contact'];
+  footerLinks.forEach((a,i) => { if (footerKeys[i]) a.textContent = t(footerKeys[i]); });
+}
+
 </script>
   <!-- Intercom -->
   <script>window.intercomSettings={app_id:"fak7bmj6"};</script>
