@@ -887,7 +887,7 @@ section { padding: 120px 60px; }
   cursor: pointer;
 }
 .trainer-card:hover { transform: translateY(-8px); }
-.trainer-card:hover .trainer-overlay { opacity: 1; }
+.trainer-card:hover .trainer-overlay { opacity: 0; }
 .trainer-card:hover .trainer-img-placeholder { transform: scale(1.05); }
 
 .trainer-img-placeholder {
@@ -1647,7 +1647,6 @@ footer {
       <span>Group Classes</span><span class="sep">—</span>
       <span>Cardio Boxing</span><span class="sep">—</span>
       <span>No Commitment</span><span class="sep">—</span>
-      <span>Yoga</span><span class="sep">—</span>
       <span>FIT@Work</span><span class="sep">—</span>
       <span>Try Before You Join</span><span class="sep">—</span>
       <span>Parc du Cinquantenaire</span><span class="sep">—</span>
@@ -1658,7 +1657,6 @@ footer {
       <span>Group Classes</span><span class="sep">—</span>
       <span>Cardio Boxing</span><span class="sep">—</span>
       <span>No Commitment</span><span class="sep">—</span>
-      <span>Yoga</span><span class="sep">—</span>
       <span>FIT@Work</span><span class="sep">—</span>
       <span>Try Before You Join</span><span class="sep">—</span>
       <span>Parc du Cinquantenaire</span><span class="sep">—</span>
@@ -1714,11 +1712,7 @@ footer {
           <div class="ic-title">Boxing</div>
           <div class="ic-desc">High-intensity cardio boxing for fitness and technique.</div>
         </div>
-        <div class="icon-card">
-          <div class="ic-icon"></div>
-          <div class="ic-title">Yoga</div>
-          <div class="ic-desc">Restore balance, flexibility, and mindfulness.</div>
-        </div>
+
         <div class="icon-card">
           <div class="ic-icon"></div>
           <div class="ic-title">Nutrition</div>
@@ -2343,7 +2337,7 @@ const translations = {
     'hero-badge': 'First class FREE — no commitment','hero-label': 'Brussels — European Quarter','hero-sub': 'Indoor &amp; Outdoor &nbsp;·&nbsp; Brussels &nbsp;·&nbsp; Mon–Sun 6AM–10PM','hero-btn1': 'Claim Free Class','hero-btn2': 'Explore Training','hero-nocard': 'No card required',
     'stat-years': 'Years of Experience','stat-members': 'Active Members','stat-classes': 'Class Types','stat-days': 'Days a Week',
     'about-label': 'Our Story','about-p1': "Born in the heart of Brussels's European Quarter, Carlito Sport is more than a gym — it's a community built on sweat, ambition, and mutual support. Whether you're taking your first step or crushing personal records, there's a place for you here.",'about-p2': 'With both indoor facilities at Avenue de Tervueren and outdoor sessions at the iconic Parc du Cinquantenaire athletics track, we bring training to life in every environment.',
-    'about-ic1': 'Weight Training','about-ic1d': 'Build strength and muscle with expert-guided lifting programs.','about-ic2': 'Boxing','about-ic2d': 'High-intensity cardio boxing for fitness and technique.','about-ic3': 'Yoga','about-ic3d': 'Restore balance, flexibility, and mindfulness.','about-ic4': 'Nutrition','about-ic4d': 'Personalised nutrition coaching to fuel your performance.',
+    'about-ic1': 'Weight Training','about-ic1d': 'Build strength and muscle with expert-guided lifting programs.','about-ic2': 'Boxing','about-ic2d': 'High-intensity cardio boxing for fitness and technique.','about-ic4': 'Nutrition','about-ic4d': 'Personalised nutrition coaching to fuel your performance.',
     'trainings-label': 'Training Programs','trainings-intro': 'Choose the format that fits your life — from dedicated 1-on-1 coaching to energetic group sessions and corporate wellness at the office.',
     't1-title': 'Personal Training','t1-desc': 'Fully tailored 1-on-1 sessions designed around your specific goals, schedule, and fitness level. Maximum results, minimum wasted effort.',
     't2-title': 'Small Group','t2-desc': "The best of both worlds — personalised attention within a motivating small group. Train alongside friends without losing that individual focus.",
@@ -2356,7 +2350,7 @@ const translations = {
     'c3-name': 'Booty Sessions','c3-desc': 'Sculpt and strengthen the glutes, hamstrings, and lower body with progressive resistance and plyometric training.',
     'c4-name': 'Strength Training','c4-desc': 'Progressive overload programming to build functional strength, muscle, and power under expert coaching supervision.',
     'c5-name': 'Cardio Boxing','c5-desc': 'Channel your energy into a full-body cardio and coordination workout inspired by boxing technique. No fighting, all fitness.',
-    'c6-name': 'Yoga','c6-desc': 'Find balance, flexibility, and mental clarity. The perfect complement to intense training — recovery and mindfulness in one.',
+    
     'all-levels': 'All Levels','intermediate': 'Intermediate','beginner': 'Beginner Friendly',
     'trainers-label': 'The Team',
     'testi-label': 'Reviews','testi-meta': '5.0 — Based on 190+ Reviews','testi-cta': 'Join Them — Try a Free Class','testi-cta-note': 'No commitment. Just show up.',
@@ -2379,7 +2373,7 @@ const translations = {
     'hero-badge': 'Premier cours GRATUIT — sans engagement','hero-label': 'Bruxelles — Quartier Européen','hero-sub': 'Indoor &amp; Outdoor &nbsp;·&nbsp; Bruxelles &nbsp;·&nbsp; Lun–Dim 6h–22h','hero-btn1': 'Réserver mon cours gratuit','hero-btn2': "Découvrir l'entraînement",'hero-nocard': 'Sans carte bancaire',
     'stat-years': "Ans d'Expérience",'stat-members': 'Membres Actifs','stat-classes': 'Types de Cours','stat-days': 'Jours par Semaine',
     'about-label': 'Notre Histoire','about-p1': "Né au cœur du Quartier Européen de Bruxelles, Carlito Sport est bien plus qu'une salle de sport — c'est une communauté fondée sur la sueur, l'ambition et la solidarité. Que tu fasses tes premiers pas ou que tu battes des records personnels, ta place est ici.",'about-p2': "Avec nos installations intérieures Avenue de Tervueren et nos séances en plein air à la piste d'athlétisme du Parc du Cinquantenaire, nous donnons vie à l'entraînement dans tous les environnements.",
-    'about-ic1': 'Musculation','about-ic1d': 'Développe ta force et tes muscles avec des programmes guidés par des experts.','about-ic2': 'Boxe','about-ic2d': 'Cardio boxing haute intensité pour la forme et la technique.','about-ic3': 'Yoga','about-ic3d': 'Retrouve équilibre, souplesse et pleine conscience.','about-ic4': 'Nutrition','about-ic4d': 'Coaching nutritionnel personnalisé pour optimiser tes performances.',
+    'about-ic1': 'Musculation','about-ic1d': 'Développe ta force et tes muscles avec des programmes guidés par des experts.','about-ic2': 'Boxe','about-ic2d': 'Cardio boxing haute intensité pour la forme et la technique.','about-ic4': 'Nutrition','about-ic4d': 'Coaching nutritionnel personnalisé pour optimiser tes performances.',
     'trainings-label': "Programmes d'Entraînement",'trainings-intro': "Choisis le format qui correspond à ta vie — du coaching individuel dédié aux séances de groupe dynamiques et au bien-être en entreprise.",
     't1-title': 'Coaching Personnel','t1-desc': "Séances 1-on-1 entièrement sur mesure, adaptées à tes objectifs, ton emploi du temps et ton niveau. Résultats maximaux, efforts optimisés.",
     't2-title': 'Petit Groupe','t2-desc': "Le meilleur des deux mondes — suivi personnalisé au sein d'un petit groupe motivant. Entraîne-toi avec des amis sans perdre l'attention individuelle.",
@@ -2392,7 +2386,7 @@ const translations = {
     'c3-name': 'Booty Sessions','c3-desc': 'Sculpte et renforce les fessiers, ischio-jambiers et bas du corps avec résistance progressive et entraînement pliométrique.',
     'c4-name': 'Musculation','c4-desc': 'Programmation en surcharge progressive pour développer force fonctionnelle, masse musculaire et puissance.',
     'c5-name': 'Cardio Boxe','c5-desc': 'Canalise ton énergie dans un entraînement cardio et coordination inspiré de la technique de boxe. Pas de combat, que du fitness.',
-    'c6-name': 'Yoga','c6-desc': 'Trouve équilibre, souplesse et clarté mentale. Le complément parfait à un entraînement intense — récupération et pleine conscience en un.',
+    
     'all-levels': 'Tous Niveaux','intermediate': 'Intermédiaire','beginner': 'Débutant Bienvenu',
     'trainers-label': "L'Équipe",
     'testi-label': 'Avis','testi-meta': '5.0 — Basé sur 190+ Avis','testi-cta': 'Rejoins-les — Essaie un cours gratuit','testi-cta-note': 'Sans engagement. Viens juste.',
@@ -2448,7 +2442,7 @@ function applyTranslations() {
   if (aboutPs[1]) aboutPs[1].textContent = t('about-p2');
   const icTitles = document.querySelectorAll('.ic-title');
   const icDescs = document.querySelectorAll('.ic-desc');
-  ['about-ic1','about-ic2','about-ic3','about-ic4'].forEach((k,i) => {
+  ['about-ic1','about-ic2','about-ic4'].forEach((k,i) => {
     if (icTitles[i]) icTitles[i].textContent = t(k);
     if (icDescs[i]) icDescs[i].textContent = t(k+'d');
   });
