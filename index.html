@@ -2385,6 +2385,20 @@ const translations = {
     'hours-mf': 'Monday – Friday','hours-sat': 'Saturday','hours-sun': 'Sunday',
     'touch-title': 'Get in Touch','book-title': 'Book a Session','book-btn1': 'Try Your First Class Free','book-btn2': 'Book on BSport',
     'social-label': 'Follow the journey','footer-copy': '© 2026 Carlito Sport. Brussels, European Quarter.',
+    'about-title': 'TRAIN<br>HARDER.<br>LIVE<br>BETTER.',
+    't1-text': '"Super nice coach and individual, very good training that is adapted to your needs. Would definitely recommend!"',
+    't2-text': '"I had fallen off my gym routine, then I discovered Carlito through Instagram. It completely changed everything — I\'m back and stronger than ever."',
+    't3-text': '"Tried the Cinquantenaire class — absolutely brilliant atmosphere. Highly recommend to anyone looking to get moving in Brussels!"',
+    't4-text': '"Professional coaches who really listen. The atmosphere is top-notch and the results speak for themselves. I recommend without hesitation!"',
+    't5-text': '"A professional coach who knows his craft. Several people I know have worked with him and the results are incredible. Worth every session."',
+    't6-text': '"Good classes, lots of options, and great fun! The outdoor sessions in the park are something special — unlike any gym experience I\'ve had."',
+    'review-source': 'Facebook Review',
+    'trainings-title': 'HOW WE<br>TRAIN',
+    'classes-title': 'OUR<br>CLASSES',
+    'trainers-title': 'MEET YOUR<br>COACHES',
+    'testi-title': 'WHAT THEY<br>SAY',
+    'pricing-title': 'START<br>FOR FREE',
+    'contact-title': 'LOCATIONS<br>&amp; CONTACT',
   },
   fr: {
     'nav-training': 'Entraînement','nav-classes': 'Cours','nav-trainers': 'Coachs','nav-pricing': 'Tarifs','nav-contact': 'Contact','nav-free-trial': 'Essai Gratuit',
@@ -2421,6 +2435,20 @@ const translations = {
     'hours-mf': 'Lundi – Vendredi','hours-sat': 'Samedi','hours-sun': 'Dimanche',
     'touch-title': 'Nous Contacter','book-title': 'Réserver une Séance','book-btn1': 'Essayer mon premier cours gratuit','book-btn2': 'Réserver sur BSport',
     'social-label': "Suis l'aventure",'footer-copy': '© 2026 Carlito Sport. Bruxelles, Quartier Européen.',
+    'about-title': 'ENTRAÎNE-TOI<br>PLUS DUR.<br>VIS<br>MIEUX.',
+    't1-text': '"Super coach et personne, très bon entraînement adapté à tes besoins. Je recommande vivement !"',
+    't2-text': '"J\'avais décroché de ma routine sportive, puis j\'ai découvert Carlito sur Instagram. Ça a tout changé — je suis de retour et plus forte que jamais."',
+    't3-text': '"J\'ai essayé le cours au Cinquantenaire — une atmosphère absolument brillante. Je recommande à tous ceux qui veulent bouger à Bruxelles !"',
+    't4-text': '"Des coachs professionnels qui écoutent vraiment. L\'ambiance est top et les résultats parlent d\'eux-mêmes. Je recommande sans hésitation !"',
+    't5-text': '"Un coach professionnel qui maîtrise son métier. Plusieurs personnes que je connais ont travaillé avec lui et les résultats sont incroyables. Chaque séance en vaut la peine."',
+    't6-text': '"Bons cours, beaucoup d\'options et vraiment fun ! Les séances outdoor dans le parc sont quelque chose de spécial — contrairement à toute expérience de salle que j\'ai eue."',
+    'review-source': 'Avis Facebook',
+    'trainings-title': 'COMMENT<br>ON TRAVAILLE',
+    'classes-title': 'NOS<br>COURS',
+    'trainers-title': 'RENCONTRE TES<br>COACHS',
+    'testi-title': "CE QU'ILS<br>DISENT",
+    'pricing-title': 'COMMENCEZ<br>GRATUITEMENT',
+    'contact-title': 'LIEUX<br>&amp; CONTACT',
   }
 };
 
@@ -2453,6 +2481,22 @@ function applyTranslations() {
 
   const statLabels = document.querySelectorAll('.stat-label');
   ['stat-years','stat-members','stat-classes','stat-days'].forEach((k,i) => { if (statLabels[i]) statLabels[i].textContent = t(k); });
+
+  // SECTION TITLES
+  const aboutTitle = document.querySelector('#about .section-title');
+  if(aboutTitle) aboutTitle.innerHTML = t('about-title');
+  const trainingsTitle = document.querySelector('#trainings .section-title');
+  if(trainingsTitle) trainingsTitle.innerHTML = t('trainings-title');
+  const classesTitle = document.querySelector('#classes .section-title');
+  if(classesTitle) classesTitle.innerHTML = t('classes-title');
+  const trainersTitle = document.querySelector('#trainers .section-title');
+  if(trainersTitle) trainersTitle.innerHTML = t('trainers-title');
+  const testiTitle = document.querySelector('#testimonials .section-title');
+  if(testiTitle) testiTitle.innerHTML = t('testi-title');
+  const pricingTitle = document.querySelector('#pricing .section-title');
+  if(pricingTitle) pricingTitle.innerHTML = t('pricing-title');
+  const contactTitle = document.querySelector('#contact .section-title');
+  if(contactTitle) contactTitle.innerHTML = t('contact-title');
 
   document.querySelector('#about .section-label').textContent = t('about-label');
   const aboutPs = document.querySelectorAll('#about .about-text p');
@@ -2492,7 +2536,17 @@ function applyTranslations() {
 
   document.querySelector('#trainers .section-label').textContent = t('trainers-label');
 
+  // TESTIMONIALS
   document.querySelector('#testimonials .section-label').textContent = t('testi-label');
+  const testiCards = document.querySelectorAll('.testimonial-card');
+  ['t1-text','t2-text','t3-text','t4-text','t5-text','t6-text'].forEach((k,i) => {
+    if(testiCards[i]) {
+      const txt = testiCards[i].querySelector('.testimonial-text');
+      if(txt) txt.textContent = t(k);
+      const src = testiCards[i].querySelector('.testimonial-source');
+      if(src) src.textContent = t('review-source');
+    }
+  });
   const testiMeta = document.querySelector('.testimonials-meta');
   if (testiMeta) testiMeta.textContent = t('testi-meta');
   const testiCta = document.querySelector('.testimonials-cta a');
